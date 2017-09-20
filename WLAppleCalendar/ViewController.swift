@@ -10,6 +10,7 @@ import JTAppleCalendar
 
 class ViewController: UIViewController {
 
+    // MARK: Outlets
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var showTodayButton: UIBarButtonItem!
@@ -43,7 +44,7 @@ class ViewController: UIViewController {
     let formatter = DateFormatter()
     let dateFormatterString = "yyyy MM dd"
     let numOfRowsInCalendar = 6
-    let numOfRandomEvent = 1000
+    let numOfRandomEvent = 100
     let calendarCellIdentifier = "CellView"
     let scheduleCellIdentifier = "detail"
     
@@ -59,11 +60,8 @@ class ViewController: UIViewController {
     var currentMonthSymbol: String {
         get {
             let startDate = (calendarView.visibleDates().monthDates.first?.date)!
-            
             let month = Calendar.current.dateComponents([.month], from: startDate).month!
-            
             let monthString = DateFormatter().monthSymbols[month-1]
-            
             return monthString
         }
     }
@@ -142,8 +140,6 @@ extension ViewController {
             self.calendarView.selectDates([Date()])
         }
     }
-    
-
 }
 
 // MARK: Dynamic CalendarView's height
@@ -169,7 +165,6 @@ extension ViewController {
     
     func getSchedule(fromDate: Date, toDate: Date) {
         var schedules: [Schedule] = []
-        
         for _ in 1...numOfRandomEvent {
             schedules.append(Schedule(fromStartDate: fromDate))
         }
@@ -210,7 +205,6 @@ extension ViewController {
     }
     
     func handleCellTextColor(view: CellView, cellState: CellState) {
-        
         if cellState.isSelected {
             view.dayLabel.textColor = UIColor.white
         }
@@ -220,7 +214,6 @@ extension ViewController {
                 view.dayLabel.textColor = UIColor.gray
             }
         }
-        
         
         if Calendar.current.isDateInToday(cellState.date) {
             if cellState.isSelected {
@@ -240,7 +233,6 @@ extension ViewController: JTAppleCalendarViewDataSource {
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        
         let startDate = formatter.date(from: "2017 01 01")!
         let endDate = formatter.date(from: "2030 02 01")!
         
@@ -249,7 +241,7 @@ extension ViewController: JTAppleCalendarViewDataSource {
                                                  numberOfRows: numOfRowsInCalendar,
                                                  calendar: Calendar.current,
                                                  generateInDates: .forAllMonths,
-                                                 generateOutDates: .tillEndOfGrid,
+                                                 generateOutDates: .tillEndOfRow,
                                                  firstDayOfWeek: .sunday,
                                                  hasStrictBoundaries: true)
         return parameters
@@ -258,7 +250,6 @@ extension ViewController: JTAppleCalendarViewDataSource {
 
 // MARK: JTAppleCalendarViewDelegate
 extension ViewController: JTAppleCalendarViewDelegate {
-    
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: calendarCellIdentifier, for: indexPath) as! CellView
         configureCell(view: cell, cellState: cellState)
@@ -280,6 +271,7 @@ extension ViewController: JTAppleCalendarViewDelegate {
         
         getSchedule()
         select(onVisibleDates: visibleDates)
+        return
         view.layoutIfNeeded()
         
         adjustCalendarViewHeight()
@@ -323,3 +315,4 @@ extension ViewController : UITableViewDelegate {
         print("schedule selected")
     }
 }
+

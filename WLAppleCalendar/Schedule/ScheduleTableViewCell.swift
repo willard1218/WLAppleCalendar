@@ -17,7 +17,6 @@ class ScheduleTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
     
-    
     var schedule: Schedule! {
         didSet {
             titleLabel.text = schedule.title
@@ -31,11 +30,4 @@ class ScheduleTableViewCell: UITableViewCell {
             categoryLine.backgroundColor = schedule.categoryColor
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    
 }
