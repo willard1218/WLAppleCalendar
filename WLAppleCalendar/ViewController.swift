@@ -241,7 +241,7 @@ extension ViewController: JTAppleCalendarViewDataSource {
                                                  numberOfRows: numOfRowsInCalendar,
                                                  calendar: Calendar.current,
                                                  generateInDates: .forAllMonths,
-                                                 generateOutDates: .tillEndOfRow,
+                                                 generateOutDates: .tillEndOfGrid,
                                                  firstDayOfWeek: .sunday,
                                                  hasStrictBoundaries: true)
         return parameters
@@ -271,7 +271,7 @@ extension ViewController: JTAppleCalendarViewDelegate {
         
         getSchedule()
         select(onVisibleDates: visibleDates)
-        return
+        
         view.layoutIfNeeded()
         
         adjustCalendarViewHeight()

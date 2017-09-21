@@ -32,7 +32,7 @@
 
 註:  
 
-1. 設定時，選擇 [tillEndOfRow] (http://cocoadocs.org/docsets/JTAppleCalendar/7.0.6/Enums/OutDateCellGeneration.html#/s:FO15JTAppleCalendar21OutDateCellGeneration12tillEndOfRowFMS0_S0_) 就會有動態的 cell 高度 (6x7 or 5x7)；   
+1. 設定時，選擇 [tillEndOfRow](http://cocoadocs.org/docsets/JTAppleCalendar/7.0.6/Enums/OutDateCellGeneration.html#/s:FO15JTAppleCalendar21OutDateCellGeneration12tillEndOfRowFMS0_S0_) 就會有動態的 cell 高度 (6x7 or 5x7)；   
    選擇 [tillEndOfGrid](http://cocoadocs.org/docsets/JTAppleCalendar/7.0.6/Enums/OutDateCellGeneration.html#/s:FO15JTAppleCalendar21OutDateCellGeneration13tillEndOfGridFMS0_S0_)  就會固定給 6x7 的高度。   
 2. 此行事曆進入一個月份會給你三個 array，分別是 inDates/monthDates/outDates。
 monthDates 就是在行事曆上，且是這個月份的日期；  
